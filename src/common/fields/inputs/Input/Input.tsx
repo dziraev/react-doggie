@@ -6,10 +6,9 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({ isError = false, helperText, ...props }) => {
-  const className = isError ? styles.error : '';
   return (
     <>
-      <input className={`${styles.input} ${className}`} {...props} />
+      <input className={`${styles.input} ${isError ? styles.error : ''}`} {...props} />
       {isError && helperText && <div className={styles.helperText}>{helperText}</div>}
     </>
   );

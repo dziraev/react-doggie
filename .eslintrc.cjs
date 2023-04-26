@@ -15,8 +15,10 @@ module.exports = {
   rules: {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'jsx-a11y/anchor-is-valid': 'off',
+    'no-unused-vars': 'warn',
     'react/prop-types': 'off',
     'import/extensions': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',

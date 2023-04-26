@@ -1,0 +1,22 @@
+.input {
+  width: 100%;
+  padding: 15px;
+  background: rgba(228, 228, 228, 0.7);
+  border-radius: 5px;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.error {
+  background: rgba(219, 57, 57, 0.3);
+}
+
+.helperText {
+  color: #e36464;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 10px;
+}

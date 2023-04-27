@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .input {
   width: 100%;
   padding: 15px;
@@ -10,12 +14,16 @@
   caret-color: #434141;
 }
 
-.input:hover {
+.input:hover, .passwordToggle:hover + .input {
   background: #e4e4e4;
 }
 
 .input::placeholder {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.input_paddingRight {
+  padding-right: 35px;
 }
 
 .input.error {
@@ -28,4 +36,13 @@
   font-size: 12px;
   line-height: 16px;
   padding-left: 10px;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  transform: translate(0, -50%);
+  font-size: 0;
+  cursor: pointer;
 }

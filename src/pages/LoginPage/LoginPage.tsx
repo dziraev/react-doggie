@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { Input, Button } from '@/common/fields';
+import { Input, Button, PasswordInput } from '@/common/fields';
 
 import styles from './LoginPage.module.css';
 
@@ -63,8 +63,7 @@ export const LoginPage: React.FC = () => {
             />
           </div>
           <div className={styles.form_input}>
-            <Input
-              type='password'
+            <PasswordInput
               value={formValues.password}
               placeholder='password'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

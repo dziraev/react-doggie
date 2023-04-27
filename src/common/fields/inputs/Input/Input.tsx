@@ -1,4 +1,4 @@
-import styles from './Input.module.css';
+import styles from '../Input.module.css';
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   isError?: boolean;

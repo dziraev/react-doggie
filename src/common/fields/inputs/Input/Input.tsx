@@ -1,14 +1,21 @@
+import { useRef } from 'react';
+
 import styles from '../Input.module.css';
 
-interface InputProps extends React.HTMLProps<HTMLInputElement> {
-  isError?: boolean;
-  helperText?: string;
-}
+export const Input: React.FC<InputProps> = ({ isError = false, helperText, label, ...props }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
-export const Input: React.FC<InputProps> = ({ isError = false, helperText, ...props }) => {
   return (
     <>
-      <input className={`${styles.input} ${isError ? styles.error : ''}`} {...props} />
+      <div
+        className={`${styles.container} ${isError ? styles.error : ''}`}
+        onClick={() => inputRef.current?.focus()}
+      >
+        <input ref={inputRef} id={label} className={styles.input} {...props} />
+        <label htmlFor={label} className={styles.label}>
+          {label}
+        </label>
+      </div>
       {isError && helperText && <div className={styles.helperText}>{helperText}</div>}
     </>
   );

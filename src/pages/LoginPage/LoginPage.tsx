@@ -48,7 +48,7 @@ export const LoginPage: React.FC = () => {
           <div className={styles.form_input}>
             <Input
               value={formValues.username}
-              placeholder='username'
+              label='username'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
                 setFormValues({ ...formValues, username });
@@ -65,7 +65,7 @@ export const LoginPage: React.FC = () => {
           <div className={styles.form_input}>
             <PasswordInput
               value={formValues.password}
-              placeholder='password'
+              label='password'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
                 setFormValues({ ...formValues, password });

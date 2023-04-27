@@ -1,32 +1,54 @@
 .container {
   position: relative;
+  width: 100%;
+  padding: 20px 15px 9px;
+  background: rgba(228, 228, 228, 0.7);
+  border-radius: 5px;
+  font-size: 0;
+  cursor: text;
+}
+
+.container:focus-within .label, input:not([value='']) + .label {
+  top: 5px;
+  left: 10px;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.container:hover, .container:focus-within {
+  background: #e4e4e4;
 }
 
 .input {
   width: 100%;
-  padding: 15px;
-  background: rgba(228, 228, 228, 0.7);
-  border-radius: 5px;
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
   color: #434141;
   caret-color: #434141;
-}
-
-.input:hover, .passwordToggle:hover + .input {
-  background: #e4e4e4;
-}
-
-.input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 }
 
 .input_paddingRight {
-  padding-right: 35px;
+  padding-right: 30px;
 }
 
-.input.error {
+.label {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: inherit;
+  line-height: 19px;
+  transition: all 0.2s ease 0s;
+}
+
+.label::first-letter {
+  text-transform: capitalize;
+}
+
+.container.error {
   background: rgba(219, 57, 57, 0.3);
 }
 

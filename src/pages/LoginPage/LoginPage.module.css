@@ -40,7 +40,7 @@
   min-width: 250px;
 }
 
-.form_input:not(:last-child) {
+.form > *:not(:last-child) {
   margin-bottom: 15px;
 }
 

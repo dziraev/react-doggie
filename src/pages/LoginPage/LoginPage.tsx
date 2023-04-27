@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { Input, Button, PasswordInput } from '@/common/fields';
+import { Input, PasswordInput, Button, Checkbox } from '@/common/fields';
 
 import styles from './LoginPage.module.css';
 
@@ -34,7 +34,7 @@ const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: st
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [formValues, setFormValues] = useState({ username: '', password: '' });
+  const [formValues, setFormValues] = useState({ username: '', password: '', notMyDevice: false });
   const [formErrors, setFormErrors] = useState<FormErrors>({
     username: null,
     password: null
@@ -77,6 +77,16 @@ export const LoginPage: React.FC = () => {
                 isError: !!formErrors.password,
                 helperText: formErrors.password
               })}
+            />
+          </div>
+          <div>
+            <Checkbox
+              checked={formValues.notMyDevice}
+              label='This is not my device'
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                const notMyDevice = event.target.checked;
+                setFormValues({ ...formValues, notMyDevice });
+              }}
             />
           </div>
           <div>

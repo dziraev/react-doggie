@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { Input, Button } from '@/common/fields';
 
@@ -32,6 +33,7 @@ const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: st
 };
 
 export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({ username: '', password: '' });
   const [formErrors, setFormErrors] = useState<FormErrors>({
     username: null,
@@ -82,7 +84,9 @@ export const LoginPage: React.FC = () => {
             <Button>Sign In</Button>
           </div>
         </div>
-        <div className={styles.singUp}>create new account</div>
+        <div className={styles.singUp} onClick={() => navigate('/registration')}>
+          create new account
+        </div>
       </div>
     </section>
   );

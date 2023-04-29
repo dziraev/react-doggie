@@ -1,10 +1,10 @@
 .button {
   width: 100%;
-  height: 48px;
-  display: flex;
+  min-height: 48px;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: #f5c67a;
+  background: var(--primary);
   border-radius: 5px;
   padding: 14.5px 10px;
   color: #fff;
@@ -17,11 +17,12 @@
 }
 
 .button:hover {
-  background: #f5c678;
+  background: var(--primary);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
 }
-.button:active{
-  background: rgba(245, 198, 120, 0.7);
+
+.button:active {
+  background: var(--primary7);
 }
 
 .loading {

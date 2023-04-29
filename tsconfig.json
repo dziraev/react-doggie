@@ -25,6 +25,7 @@
       "@/common/*": ["./src/common/*"],
       "@/pages": ["./src/pages"],
       "@/assets/images/*": ["./src/assets/images/*"],
+      "@/utils": ["./src/utils"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

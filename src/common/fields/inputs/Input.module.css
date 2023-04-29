@@ -8,7 +8,7 @@
   cursor: text;
 }
 
-.container:focus-within .label, input:not([value='']) + .label {
+.input:focus + .label, input:not([value='']) + .label {
   top: 5px;
   left: 10px;
   font-size: 10px;

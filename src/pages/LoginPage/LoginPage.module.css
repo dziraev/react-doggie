@@ -50,7 +50,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-  color: #f5c678;
+  color: var(--primary);
   cursor: pointer;
 }
 

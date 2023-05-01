@@ -2,10 +2,11 @@
   position: relative;
   width: 100%;
   padding: 20px 15px 9px;
-  background: rgba(228, 228, 228, 0.7);
+  background: var(--background-color-field);
   border-radius: 5px;
   font-size: 0;
   cursor: text;
+  transition: var(--transition);
 }
 
 .input:focus + .label, input:not([value='']) + .label {
@@ -16,7 +17,7 @@
 }
 
 .container:hover, .container:focus-within {
-  background: #e4e4e4;
+  background: var(--color-field-focus);
 }
 
 .input {

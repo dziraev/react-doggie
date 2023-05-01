@@ -4,26 +4,32 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: var(--primary);
+  background: var(--color-accent);
   border-radius: 5px;
   padding: 14.5px 10px;
   color: #fff;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-button);
   cursor: pointer;
   user-select: none;
+  transition: var(--transition);
 }
 
 .button:hover {
-  background: var(--primary);
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-button-hover);
 }
 
 .button:active {
-  background: var(--primary7);
+  background: var(--color-accent7);
 }
+
+.button:disabled {
+  background: var(--color-accent7);
+  box-shadow: var(--shadow-button-hover);
+}
+
 
 .loading {
   position: relative;

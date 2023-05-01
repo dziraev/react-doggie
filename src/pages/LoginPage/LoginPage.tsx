@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Button, Checkbox, Input, PasswordInput } from '@/common/fields';
-import { useMutation, useQueryLazy } from '@/utils';
+import { api, setCookie, useMutation, useQuery, useQueryLazy } from '@/utils';
 
 import styles from './LoginPage.module.css';
 
@@ -42,15 +42,21 @@ const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: st
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const [formValues, setFormValues] = useState({ username: '', password: '', notMyDevice: false });
+  const [formValues, setFormValues] = useState({
+    username: '',
+    password: '',
+    isNotMyDevice: false
+  });
   const {
     mutation: authMutation,
     isLoading: authLoading,
     error,
     status
-  } = useMutation<typeof formValues, User>('http://localhost:3000/auth', 'post');
+  } = useMutation<typeof formValues, User>((values) => api.post('auth', values));
 
-  const { query } = useQueryLazy<User>('http://localhost:3000/users');
+  // const { data } = useQuery<User[]>(() => api.get('users'));
+  // const { query, isLoading } = useQueryLazy<User[]>(() => api.get('users'));
+  // console.log(data);
   const [formErrors, setFormErrors] = useState<FormErrors>({
     username: null,
     password: null
@@ -64,9 +70,11 @@ export const LoginPage: React.FC = () => {
           className={styles.form}
           onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            // const response = await authMutation(formValues);
-            const response = await query();
-            console.log('resposne', response);
+            const response = await authMutation(formValues);
+            console.log(response);
+            if (response && formValues.isNotMyDevice) {
+              setCookie('doggie-isNotMyDevice', Date.now() + 30 * 60 * 1000);
+            }
           }}
         >
           <div className={styles.form_input}>
@@ -108,11 +116,11 @@ export const LoginPage: React.FC = () => {
           <div>
             <Checkbox
               disabled={authLoading}
-              checked={formValues.notMyDevice}
+              checked={formValues.isNotMyDevice}
               label='This is not my device'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                const notMyDevice = event.target.checked;
-                setFormValues({ ...formValues, notMyDevice });
+                const isNotMyDevice = event.target.checked;
+                setFormValues({ ...formValues, isNotMyDevice });
               }}
             />
           </div>

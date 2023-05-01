@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<ButtonProps> = ({ children, isLoading = false, ...props }) => {
   return (
-    <button className={styles.button} {...props}>
+    <button className={styles.button} disabled={isLoading} {...props}>
       {!isLoading && children}
       {isLoading && <div className={styles.loading} />}
     </button>

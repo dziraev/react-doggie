@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { LoginPage, NotFoundPage, RegistrationPage } from '@/pages';
+import { deleteCookie, getCookie, getLocale, getMessages } from '@/utils';
+import { IntlProvider } from '@/features';
 
 import './App.css';
-import { deleteCookie, getCookie } from '@/utils';
 
 const AuthRoutes = () => {
   return (
@@ -27,6 +28,9 @@ const MainRoutes = () => {
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [messages, setMessages] = useState({});
+  const locale = getLocale();
+
   useEffect(() => {
     const authCookie = getCookie('doggie-auth-token');
     const isNotMyDevice = getCookie('doggie-isNotMyDevice');
@@ -41,12 +45,20 @@ const App = () => {
     if (authCookie && !deviceExpire) {
       setIsAuth(true);
     }
-    setIsLoading(false);
+
+    getMessages(locale).then((messages) => {
+      setMessages(messages.default);
+      setIsLoading(false);
+    });
   }, []);
 
   if (isLoading) return null;
 
-  return <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>;
+  return (
+    <IntlProvider locale={locale} messages={messages}>
+      <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+    </IntlProvider>
+  );
 };
 
 export default App;

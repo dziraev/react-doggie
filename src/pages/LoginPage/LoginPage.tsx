@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Button, Checkbox, Input, PasswordInput } from '@/common/fields';
-import { api, setCookie, useMutation, useQuery, useQueryLazy } from '@/utils';
+import { api, setCookie, useMutation } from '@/utils';
+import { IntlText } from '@/features';
 
 import styles from './LoginPage.module.css';
 
@@ -47,12 +48,10 @@ export const LoginPage: React.FC = () => {
     password: '',
     isNotMyDevice: false
   });
-  const {
-    mutation: authMutation,
-    isLoading: authLoading,
-    error,
-    status
-  } = useMutation<typeof formValues, User>((values) => api.post('auth', values));
+  const { mutationAsync: authMutation, isLoading: authLoading } = useMutation<
+    typeof formValues,
+    ApiResponse<User[]>
+  >((values) => api.post('auth', values));
 
   // const { data } = useQuery<User[]>(() => api.get('users'));
   // const { query, isLoading } = useQueryLazy<User[]>(() => api.get('users'));
@@ -126,12 +125,12 @@ export const LoginPage: React.FC = () => {
           </div>
           <div>
             <Button type='submit' isLoading={authLoading}>
-              Sign In
+              <IntlText path='button.signIn' />
             </Button>
           </div>
         </form>
         <div className={styles.singUp} onClick={() => navigate('/registration')}>
-          create new account
+          <IntlText path='pages.login.createNewAccount' />
         </div>
       </div>
     </section>

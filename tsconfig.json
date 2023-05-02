@@ -26,6 +26,9 @@
       "@/pages": ["./src/pages"],
       "@/assets/images/*": ["./src/assets/images/*"],
       "@/utils": ["./src/utils"],
+      "@/utils/helpers": ["./src/utils/helpers"],
+      "@/utils/hooks": ["./src/utils/hooks"],
+      "@/features": ["./src/features"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

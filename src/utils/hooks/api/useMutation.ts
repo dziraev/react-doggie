@@ -5,7 +5,7 @@ export const useMutation = <T, K>(request: (body: T) => Promise<K>) => {
   const [error, setError] = useState('');
   const [data, setData] = useState<K | null>(null);
 
-  const mutation = useCallback(async (body: T): void => {
+  const mutation = useCallback((body: T): void => {
     setIsLoading(true);
     try {
       request(body).then((response) => {

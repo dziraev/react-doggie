@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { Button, Checkbox, Input, PasswordInput } from '@/common/fields';
 import { api, setCookie, useMutation } from '@/utils';
-import { IntlText } from '@/features';
+import { IntlText, useTheme } from '@/features';
 
 import styles from './LoginPage.module.css';
 
@@ -41,6 +41,8 @@ const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: st
 };
 
 export const LoginPage: React.FC = () => {
+  const { theme, setTheme } = useTheme();
+
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
@@ -63,6 +65,7 @@ export const LoginPage: React.FC = () => {
 
   return (
     <section className={styles.loginPage}>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Theme!</button>
       <div className={styles.loginPage_container}>
         <h1 className={styles.header}>Doggie</h1>
         <form

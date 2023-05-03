@@ -1,6 +1,7 @@
 .loginPage {
   height: 100vh;
   display: flex;
+  background: var(--background-color);
 }
 
 .loginPage_container {
@@ -29,7 +30,7 @@
   width: 100%;
   color: #fff;
   text-transform: uppercase;
-  background: url('@/assets/images/doggie_background.svg') center / cover no-repeat
+  background: var(--images-auth-header) center / cover no-repeat
 }
 
 .form {

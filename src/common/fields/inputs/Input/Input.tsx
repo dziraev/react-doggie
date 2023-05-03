@@ -8,6 +8,7 @@ export const Input: React.FC<InputProps> = ({ isError = false, helperText, label
   return (
     <>
       <div
+        aria-disabled={props.disabled}
         className={`${styles.container} ${isError ? styles.error : ''}`}
         onClick={() => inputRef.current?.focus()}
       >

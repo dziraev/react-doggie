@@ -9,6 +9,19 @@
   transition: var(--transition);
 }
 
+.container.error {
+  background: var(--color-text-validation7);
+}
+
+.container:hover, .container:focus-within {
+  background: var(--color-field-focus);
+}
+
+.container[aria-disabled='true'] {
+  cursor: no-drop;
+  background: var(--color-field-focus);
+}
+
 .input:focus + .label, input:not([value='']) + .label {
   top: 5px;
   left: 10px;
@@ -16,17 +29,13 @@
   line-height: 14px;
 }
 
-.container:hover, .container:focus-within {
-  background: var(--color-field-focus);
-}
-
 .input {
   width: 100%;
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  color: #434141;
-  caret-color: #434141;
+  color: var(--color-text);
+  caret-color: var(--color-text);
   background-color: transparent;
 }
 
@@ -39,7 +48,7 @@
   top: 15px;
   left: 15px;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--color-placeholder);
   cursor: inherit;
   line-height: 19px;
   transition: all 0.2s ease 0s;
@@ -49,12 +58,8 @@
   text-transform: capitalize;
 }
 
-.container.error {
-  background: rgba(219, 57, 57, 0.3);
-}
-
 .helperText {
-  color: #e36464;
+  color: var(--color-text-validation);
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -68,4 +73,8 @@
   transform: translate(0, -50%);
   font-size: 0;
   cursor: pointer;
+}
+
+.passwordToggle * {
+  fill: var(--color-placeholder)
 }

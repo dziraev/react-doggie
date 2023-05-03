@@ -5,7 +5,7 @@ export const setCookie = (
 ) => {
   const cookieOptions: $TSFixMe = props;
 
-  if (typeof props.expires === 'number' && props.expires) {
+  if (props.expires && typeof props.expires === 'number') {
     const date = new Date();
     date.setTime(date.getTime() + props.expires * 1000);
     cookieOptions.expires = date;

@@ -25,6 +25,7 @@
       "@/common/*": ["./src/common/*"],
       "@/pages": ["./src/pages"],
       "@/assets/images/*": ["./src/assets/images/*"],
+      "@/assets/*": ["./src/assets/*"],
       "@/utils": ["./src/utils"],
       "@/utils/helpers": ["./src/utils/helpers"],
       "@/utils/hooks": ["./src/utils/hooks"],

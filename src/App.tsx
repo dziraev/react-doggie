@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { LoginPage, NotFoundPage, RegistrationPage } from '@/pages';
 import { deleteCookie, getCookie, getLocale, getMessages } from '@/utils';
-import { IntlProvider } from '@/features';
+import { IntlProvider, ThemeProvider } from '@/features';
 
 import './App.css';
 
@@ -53,11 +53,18 @@ const App = () => {
   }, []);
 
   if (isLoading) return null;
+  const theme =
+    getCookie('doggie-theme') ||
+    (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light');
 
   return (
-    <IntlProvider locale={locale} messages={messages}>
-      <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
-    </IntlProvider>
+    <ThemeProvider theme={theme}>
+      <IntlProvider locale={locale} messages={messages}>
+        <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+      </IntlProvider>
+    </ThemeProvider>
   );
 };
 

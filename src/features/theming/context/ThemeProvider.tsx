@@ -1,0 +1,29 @@
+import { useState } from 'react';
+import { setCookie } from '@/utils';
+
+import type { ThemeContextProps, Theme } from './ThemeContext';
+import { ThemeContext } from './ThemeContext';
+
+import lightTheme from '@/assets/themes/light/light.module.css';
+import darkTheme from '@/assets/themes/dark/dark.module.css';
+
+interface ThemeProviderProps extends Omit<ThemeContextProps, 'setTheme'> {
+  children: React.ReactElement;
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme }) => {
+  const [currentTheme, setCurrentTheme] = useState(theme);
+
+  const setTheme = (theme: Theme) => {
+    setCookie('doggie-theme', theme);
+    setCurrentTheme(theme);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme: currentTheme, setTheme }}>
+      <div className={currentTheme === 'light' ? lightTheme.theme : darkTheme.theme}>
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
+};

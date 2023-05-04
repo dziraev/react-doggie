@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 export const useQuery = <K>(request: () => Promise<any>, deps: React.DependencyList = []) => {
-  const [status, setStatus] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [data, setData] = useState<K | null>(null);
@@ -10,7 +9,6 @@ export const useQuery = <K>(request: () => Promise<any>, deps: React.DependencyL
     setIsLoading(true);
     try {
       request().then(async (response) => {
-        setStatus(response.status);
         setData(response.data);
         setIsLoading(false);
       });
@@ -20,5 +18,5 @@ export const useQuery = <K>(request: () => Promise<any>, deps: React.DependencyL
     }
   }, deps);
 
-  return { data, error, isLoading, status };
+  return { data, error, isLoading };
 };

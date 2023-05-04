@@ -14,7 +14,7 @@ export const useQueryLazy = <K>(request: <T>() => Promise<any>) => {
       });
     } catch (e) {
       setError((e as Error).message);
-      return { success: false, data: { message: (e as Error).message } };
+      return { success: false, data: { message: (e as Error).message }, status };
     } finally {
       setIsLoading(false);
     }

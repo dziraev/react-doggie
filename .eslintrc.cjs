@@ -17,6 +17,9 @@ module.exports = {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     'jsx-a11y/anchor-is-valid': 'off',
     'no-unused-vars': 'warn',
+    'no-undef': 0,
+    'arrow-body-style': ['error', 'as-needed'],
+    'consistent-return': 0,
     'react/prop-types': 'off',
     'import/extensions': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
@@ -30,6 +33,8 @@ module.exports = {
         namedComponents: 'arrow-function',
         unnamedComponents: 'arrow-function'
       }
-    ]
+    ],
+    '@typescript-eslint/no-shadow': 0,
+    'react/button-has-type': 0
   }
 };

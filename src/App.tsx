@@ -3,27 +3,23 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { LoginPage, NotFoundPage, RegistrationPage } from '@/pages';
 import { deleteCookie, getCookie, getLocale, getMessages } from '@/utils';
-import { IntlProvider, ThemeProvider } from '@/features';
+import { IntlProvider, Theme, ThemeProvider } from '@/features';
 
 import './App.css';
 
-const AuthRoutes = () => {
-  return (
-    <Routes>
-      <Route path='/auth' element={<LoginPage />} />
-      <Route path='/registration' element={<RegistrationPage />} />
-      <Route path='*' element={<Navigate to='/auth' replace />} />
-    </Routes>
-  );
-};
+const AuthRoutes = () => (
+  <Routes>
+    <Route path='/auth' element={<LoginPage />} />
+    <Route path='/registration' element={<RegistrationPage />} />
+    <Route path='*' element={<Navigate to='/auth' replace />} />
+  </Routes>
+);
 
-const MainRoutes = () => {
-  return (
-    <Routes>
-      <Route path='*' element={<NotFoundPage />} />
-    </Routes>
-  );
-};
+const MainRoutes = () => (
+  <Routes>
+    <Route path='*' element={<NotFoundPage />} />
+  </Routes>
+);
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
@@ -53,11 +49,11 @@ const App = () => {
   }, []);
 
   if (isLoading) return null;
-  const theme =
-    getCookie('doggie-theme') ||
+
+  const theme = (getCookie('doggie-theme') ||
     (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
-      : 'light');
+      : 'light')) as Theme;
 
   return (
     <ThemeProvider theme={theme}>

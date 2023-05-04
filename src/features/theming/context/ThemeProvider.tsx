@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { setCookie } from '@/utils';
 
 import type { ThemeContextProps, Theme } from './ThemeContext';
@@ -19,8 +19,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme })
     setCurrentTheme(theme);
   };
 
+  const value = useMemo(() => ({ theme: currentTheme, setTheme }), [currentTheme]);
+
   return (
-    <ThemeContext.Provider value={{ theme: currentTheme, setTheme }}>
+    <ThemeContext.Provider value={value}>
       <div className={currentTheme === 'light' ? lightTheme.theme : darkTheme.theme}>
         {children}
       </div>

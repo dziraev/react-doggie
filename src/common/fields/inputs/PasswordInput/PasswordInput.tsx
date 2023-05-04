@@ -16,13 +16,24 @@ export const PasswordInput: React.FC<InputProps> = ({
 
   return (
     <>
-      <div className={`${styles.container} ${isError ? styles.error : ''}`}>
+      <div
+        aria-hidden
+        aria-disabled={props.disabled}
+        className={`${styles.container} ${isError ? styles.error : ''}`}
+        onClick={() => inputRef.current?.focus()}
+      >
         {value && (
-          <div className={styles.passwordToggle} onClick={() => setShowPassword(!showPassword)}>
+          <div
+            aria-hidden
+            role='button'
+            className={styles.passwordToggle}
+            onClick={() => setShowPassword(!showPassword)}
+          >
             {showPassword ? <EyeCrossed /> : <Eye />}
           </div>
         )}
         <input
+          aria-disabled={props.disabled}
           ref={inputRef}
           id={label}
           className={`${styles.input} ${styles.input_paddingRight}`}

@@ -1,11 +1,6 @@
 import { useContext } from 'react';
 import { IntlContext } from '@/features';
 
-export interface TranslateMessage {
-  path: string;
-  values?: Record<string, string | number | boolean>;
-}
-
 export const useIntl = () => {
   const intl = useContext(IntlContext);
 
@@ -16,6 +11,7 @@ export const useIntl = () => {
     if (!intl.messages[path]) return path;
     if (!values) return intl.messages[path];
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const key in values) {
       if ({}.hasOwnProperty.call(values, key)) {
         intl.messages[path] = intl.messages[path].replace(`{${key}}`, String(values[key]));

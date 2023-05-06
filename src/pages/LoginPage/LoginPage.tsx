@@ -1,30 +1,21 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Button, Checkbox, Input, PasswordInput } from '@/common/fields';
-import { api, setCookie, useMutation } from '@/utils';
-import { IntlText, useForm, useTheme } from '@/features';
+import { api } from '@/utils/api';
+import { setCookie } from '@/utils/helpers';
+import { useMutation, useForm } from '@/utils/hooks';
+import { ROUTES } from '@/utils/constants';
+import { IntlText, useIntl } from '@/features';
 
 import styles from './LoginPage.module.css';
 
-interface FormErrors {
-  username: string | null;
-  password: string | null;
-}
-
-interface FormValues {
+interface LoginFormValues {
   username: string;
   password: string;
   isNotMyDevice: boolean;
 }
 
-interface User {
-  username: string;
-  password: string;
-  id: string;
-}
-
-const validateIsEmpty = (value: string) => {
+export const validateIsEmpty = (value: string) => {
   if (!value) return 'Required field';
   return null;
 };
@@ -38,15 +29,13 @@ const loginFormValidateSchema = {
   password: validatePassword
 };
 
-const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: string) =>
-  loginFormValidateSchema[name](value);
-
 export const LoginPage: React.FC = () => {
+  const intl = useIntl();
   const { mutationAsync: authMutation, isLoading: authLoading } = useMutation<
-    FormValues,
+    LoginFormValues,
     ApiResponse<User[]>
   >((values) => api.post('auth', values));
-  const { values, errors, setFieldValue, handleSubmit } = useForm<FormValues>({
+  const { values, errors, setFieldValue, handleSubmit } = useForm<LoginFormValues>({
     initialValues: {
       username: '',
       password: '',
@@ -79,7 +68,7 @@ export const LoginPage: React.FC = () => {
             <Input
               // disabled={authLoading}
               value={values.username}
-              label='username'
+              label={intl.translateMessage('field.input.username.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
                 setFieldValue('username', username);
@@ -95,7 +84,7 @@ export const LoginPage: React.FC = () => {
             <PasswordInput
               // disabled={authLoading}
               value={values.password}
-              label='password'
+              label={intl.translateMessage('field.input.password.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
                 setFieldValue('password', password);
@@ -111,25 +100,23 @@ export const LoginPage: React.FC = () => {
             <Checkbox
               // disabled={authLoading}
               checked={values.isNotMyDevice}
-              label='This is not my device'
+              label={intl.translateMessage('field.checkbox.isNotMyDevice.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const isNotMyDevice = event.target.checked;
                 setFieldValue('isNotMyDevice', isNotMyDevice);
               }}
             />
           </div>
-          <div>
-            <Button type='submit'>
-              <IntlText path='button.signIn' />
-            </Button>
-          </div>
+          <Button type='submit'>
+            <IntlText path='button.signIn' />
+          </Button>
         </form>
         <div
           aria-hidden
           tabIndex={0}
           role='link'
           className={styles.singUp}
-          onClick={() => navigate('/registration')}
+          onClick={() => navigate(ROUTES.REGISTRATION)}
         >
           <IntlText path='pages.login.createNewAccount' />
         </div>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useIntl } from '@/features';
 
 interface IntlTextProps extends TranslateMessage {
@@ -6,8 +8,10 @@ interface IntlTextProps extends TranslateMessage {
 
 export const IntlText: React.FC<IntlTextProps> = ({ path, values, children }) => {
   const intl = useIntl();
+
   const withFunctionalKeys =
     !!values && !!Object.keys(values).filter((key) => typeof values[key] === 'function').length;
+
   const translateMessageWithTags = (
     message: Message,
     values?: TranslateMessage['values']
@@ -30,9 +34,9 @@ export const IntlText: React.FC<IntlTextProps> = ({ path, values, children }) =>
     return (
       <>
         {messageParts.map((messagePart, index) => (
-          <>
+          <React.Fragment key={messagePart}>
             {!!index && result} {translateMessageWithTags(messagePart, filteredValues)}
-          </>
+          </React.Fragment>
         ))}
       </>
     );

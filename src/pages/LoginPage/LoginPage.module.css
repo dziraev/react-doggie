@@ -53,6 +53,7 @@
   line-height: 19px;
   color: var(--color-accent);
   cursor: pointer;
+  text-transform: lowercase;
 }
 
 .singUp::first-letter {

@@ -1,5 +1,8 @@
-.container {
+.wrapper {
   position: relative;
+}
+
+.container {
   width: 100%;
   padding: 20px 15px 9px;
   background: var(--background-color-field);
@@ -52,6 +55,7 @@
   cursor: inherit;
   line-height: 19px;
   transition: all 0.2s ease 0s;
+  text-transform: lowercase;
 }
 
 .label::first-letter {
@@ -66,7 +70,7 @@
   padding-left: 10px;
 }
 
-.passwordToggle {
+.indicator {
   position: absolute;
   top: 50%;
   right: 13px;
@@ -75,6 +79,6 @@
   cursor: pointer;
 }
 
-.passwordToggle * {
+.indicator * {
   fill: var(--color-placeholder)
 }

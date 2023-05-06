@@ -1,4 +1,20 @@
 {
+  "field.input.username.label": "Username",
+  "field.input.password.label": "Password",
+  "field.input.passwordAgain.label": "Password again",
+  "field.checkbox.isNotMyDevice.label": "This is not my device",
   "button.signIn": "Sign In",
-  "pages.login.createNewAccount": "Create a new account"
+  "button.done": "Done",
+
+  "pages.login.createNewAccount": "Create a new account",
+
+  "pages.registration.fillYourLoginData": "Fill your login data",
+  "pages.registration.iAlreadyHaveAnAccount": "I already have an account",
+  "page.registration.passwordRules.containNumber": "contain <rule>numbers</rule>",
+  "page.registration.passwordRules.containUppercase": "contain <rule>uppercase</rule> letters",
+  "page.registration.passwordRules.containLowercase": "contain <rule>lowercase</rule> letters",
+  "page.registration.passwordRules.contain8Characters": "contain at least <rule>8</rule> characters",
+  "page.registration.passwordRules.mustMatch": "passwords must match",
+
+  "validation.required.": "Required field"
 }

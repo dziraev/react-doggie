@@ -1,51 +1,43 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { ReactComponent as Eye } from '@/assets/images/Eye.svg';
 import { ReactComponent as EyeCrossed } from '@/assets/images/EyeCrossed.svg';
 
+import type { InputProps } from '../Input/Input';
+import { Input } from '../Input/Input';
+
 import styles from '../Input.module.css';
 
-export const PasswordInput: React.FC<InputProps> = ({
-  isError = false,
-  helperText,
-  label,
-  value,
-  ...props
-}) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [showPassword, setShowPassword] = useState(false);
+type PasswordInputProps = InputProps;
 
-  return (
-    <>
+export const PasswordInput: React.FC<PasswordInputProps> = ({ value, ...props }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const showPasswordToggle = !!value;
+
+  const EyeIcon = useCallback(
+    () => (
       <div
         aria-hidden
-        aria-disabled={props.disabled}
-        className={`${styles.container} ${isError ? styles.error : ''}`}
-        onClick={() => inputRef.current?.focus()}
+        role='button'
+        className={styles.passwordToggle}
+        onClick={() => setShowPassword(!showPassword)}
       >
-        {value && (
-          <div
-            aria-hidden
-            role='button'
-            className={styles.passwordToggle}
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? <EyeCrossed /> : <Eye />}
-          </div>
-        )}
-        <input
-          aria-disabled={props.disabled}
-          ref={inputRef}
-          id={label}
-          className={`${styles.input} ${styles.input_paddingRight}`}
-          type={value && showPassword ? 'text' : 'password'}
-          value={value}
-          {...props}
-        />
-        <label htmlFor={label} className={styles.label}>
-          {label}
-        </label>
+        {showPassword ? <EyeCrossed /> : <Eye />}
       </div>
-      {isError && helperText && <div className={styles.helperText}>{helperText}</div>}
-    </>
+    ),
+    [showPassword]
+  );
+
+  return (
+    <Input
+      {...(showPasswordToggle && {
+        components: {
+          indicator: EyeIcon
+        }
+      })}
+      type={showPasswordToggle && showPassword ? 'text' : 'password'}
+      value={value}
+      mask={/^[a-zA-Z0-9!:;,.]+$/g}
+      {...props}
+    />
   );
 };

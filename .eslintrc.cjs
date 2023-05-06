@@ -14,7 +14,7 @@ module.exports = {
   plugins: ['react-refresh', 'react', '@typescript-eslint', 'prettier'],
   rules: {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/no-extraneous-dependencies": 0,
     'jsx-a11y/anchor-is-valid': 'off',
     'no-unused-vars': 'warn',
     'no-undef': 0,
@@ -24,6 +24,7 @@ module.exports = {
     'import/extensions': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/no-array-index-key':'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { setCookie } from '@/utils';
+import { setCookie } from '@/utils/helpers';
 
 import type { ThemeContextProps, Theme } from './ThemeContext';
 import { ThemeContext } from './ThemeContext';
@@ -24,6 +24,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme })
   return (
     <ThemeContext.Provider value={value}>
       <div className={currentTheme === 'light' ? lightTheme.theme : darkTheme.theme}>
+        <button onClick={() => setTheme(currentTheme === 'light' ? 'dark' : 'light')}>
+          Theme!
+        </button>
         {children}
       </div>
     </ThemeContext.Provider>

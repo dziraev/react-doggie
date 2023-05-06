@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { LoginPage, NotFoundPage, RegistrationPage } from '@/pages';
-import { deleteCookie, getCookie, getLocale, getMessages } from '@/utils';
-import { IntlProvider, Theme, ThemeProvider } from '@/features';
+import { deleteCookie, getCookie, getLocale, getMessages } from '@/utils/helpers';
+import { IntlProvider, ThemeProvider } from '@/features';
+import type { Theme } from '@/features';
 
 import './App.css';
 

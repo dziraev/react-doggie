@@ -1,4 +1,14 @@
 {
+  "field.input.username.label": "Логин",
+  "field.input.password.label": "Пароль",
+  "field.input.passwordAgain.label": "Повторите пароль",
+  "field.checkbox.isNotMyDevice.label": "Не мой компьютер",
   "button.signIn": "Войти",
-  "pages.login.createNewAccount": "Создать новый аккаунт"
+  "button.done": "Готово",
+
+  "pages.login.createNewAccount": "Создать новый аккаунт",
+
+  "pages.registration.fillYourLoginData": "Введите ваши данные",
+  "pages.registration.iAlreadyHaveAnAccount": "У меня уже есть аккаунт",
+  "validation.required.": "обязательное поле"
 }

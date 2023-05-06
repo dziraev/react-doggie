@@ -1,0 +1,126 @@
+.page {
+  height: 100vh;
+  display: flex;
+  background: var(--background-color);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: '. form panel';
+  grid-column-gap: 50px;
+  margin: auto;
+  max-width: 1000px;
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form_title {
+  font-family: 'Baloo';
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 31px;
+  color: var(--color-accent)
+}
+
+.form_title:not(:last-child) {
+  margin-bottom: 72px;
+}
+
+.form_header:first-letter {
+  text-transform: capitalize;
+}
+
+.form_container {
+
+}
+
+.form_container > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.form_input {
+  max-width: 300px;
+}
+
+.panel {
+  grid-area: panel;
+  background-color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.panel_header {
+  font-family: 'Baloo';
+  height: 198px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 63px;
+  width: 100%;
+  color: var(--color-white);
+  text-transform: uppercase;
+  background: url('@/assets/themes/light/doggie_background.svg') center / cover no-repeat
+}
+
+.panel_validation_info {
+  padding: 40px 30px;
+  background-color: var(--background-color);
+}
+
+.panel_have_an_account {
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--color-white);
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.panel_have_an_account::first-letter {
+  text-transform: capitalize;
+}
+
+.panel_validation_info {
+  color: var(--color-text);
+  text-align: left;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.panel_validation_info > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+.panel_validation_info > *:last-child {
+  margin-top: 20px;
+}
+
+
+.panel_validation_title {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.panel_validation_list{
+  font-weight: 400;
+}
+
+.panel_validation_list > li:not(:last-child){
+  margin-bottom: 10px;
+}
+
